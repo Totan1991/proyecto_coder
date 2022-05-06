@@ -1,0 +1,28 @@
+{% extends 'AppCoder/base.html' %}  
+  
+{% block contenidovariable %}  
+  
+<div class = "login">  
+  
+    {% if messages %}  
+        <ul>   
+            {% for message in messages %}  
+                <li>{{ message }}</li>  
+                {% endfor %}  
+        </ul>   
+    {% endif %}  
+      
+    <h1>Registo de usuario:</h1>  
+  
+         <form action="" method="POST" >  
+            {% csrf_token %}  
+           
+            {{ form.as_p }}  
+              
+            <button type="submit"> Registrarse</button>      
+                
+             
+         </form>  
+     </div>  
+  
+{% endblock contenidovariable %}  

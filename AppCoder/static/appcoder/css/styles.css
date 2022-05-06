@@ -1,0 +1,196 @@
+.body {
+  font-size: 8px;
+}
+
+.card-holder {
+  margin: 0em 0;
+}
+
+.card {
+  font-family: -apple-system, BlinkMacSystemFont, 'Open Sans', sans-serif;
+  font-size: 1.1em;
+  font-weight: 80;
+  height: 4em;
+  width: 64em;
+  padding: 0.5em 1em;
+  border-radius: 0.25em;
+  display: table-cell;
+  vertical-align: middle;
+  letter-spacing: 2px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.card .subtle {
+  color: #000;
+  font-size: 0.5em;
+  font-weight: 400;
+  letter-spacing: -1px;
+}
+
+.card i {
+  font-size: 3em;
+}
+
+.bg-gold {
+  background: -webkit-linear-gradient(110deg, #383837 60%, #1b1b1a 60%);
+  background: -o-linear-gradient(110deg, #383837 60%, #1b1b1a 60%);
+  background: -moz-linear-gradient(110deg, #383837 60%, #1b1b1a 60%);
+  background: linear-gradient(110deg, #383837 60%, #1b1b1a 60%);
+  color: aliceblue;
+  margin-top: 0%;
+  margin-left: auto;
+  
+}
+.bg-gold2 {
+  background: -webkit-linear-gradient(110deg, #1b1b1a 60%, #1b1b1a 60%);
+  background: -o-linear-gradient(110deg, #1b1b1a 60%, #1b1b1a 60%);
+  background: -moz-linear-gradient(110deg, #1b1b1a 60%, #1b1b1a 60%);
+  background: linear-gradient(110deg, #1b1b1a 60%, #1b1b1a 60%);
+  color: rgb(214, 182, 41);
+  margin-top: 0%;
+  
+}
+
+.bg-news {
+  background: -webkit-linear-gradient(70deg, #ff6464 40%, #5ac8fa 40%);
+  background: -o-linear-gradient(70deg, #ff6464 40%, #5ac8fa 40%);
+  background: -moz-linear-gradient(70deg, #ff6464 40%, #5ac8fa 40%);
+  background: linear-gradient(70deg, #ff6464 40%, #5ac8fa 40%);
+}
+
+.bg-germany {
+    color: #fff;
+    background: -webkit-linear-gradient(110deg, #000 33%, rgba(0, 0, 0, 0) 33%), -webkit-linear-gradient(110deg, #dd0000 66%, #ffc608 66%);
+    background: -o-linear-gradient(110deg, #000 33%, rgba(0, 0, 0, 0) 33%), -o-linear-gradient(110deg, #dd0000 66%, #ffc608 66%);
+    background: -moz-linear-gradient(110deg, #000 33%, rgba(0, 0, 0, 0) 33%), -moz-linear-gradient(110deg, #dd0000 66%, #ffc608 66%);
+    background: linear-gradient(110deg, #000 33%, rgba(0, 0, 0, 0) 33%), linear-gradient(110deg, #dd0000 66%, #ffc608 66%);
+}
+
+.bg-aurora {
+    color: #fff;
+    background: -webkit-linear-gradient(-70deg, #fa7c30 30%, rgba(0, 0, 0, 0) 30%), url('https://www.nasa.gov/sites/default/files/thumbnails/image/pia21421-cr.jpg');
+    background: -o-linear-gradient(-70deg, #fa7c30 30%, rgba(0, 0, 0, 0) 30%), url('https://www.nasa.gov/sites/default/files/thumbnails/image/pia21421-cr.jpg');
+    background: -moz-linear-gradient(-70deg, #fa7c30 30%, rgba(0, 0, 0, 0) 30%), url('https://www.nasa.gov/sites/default/files/thumbnails/image/pia21421-cr.jpg');
+    background: linear-gradient(-70deg, #fa7c30 30%, rgba(0, 0, 0, 0) 30%), url('https://www.nasa.gov/sites/default/files/thumbnails/image/pia21421-cr.jpg');
+  background-size: cover;
+  background-position: 50% 21%;
+  text-align: right;
+}
+
+.bg-germany {
+    color: #fff;
+    background: -webkit-linear-gradient(110deg, #000 33%, rgba(0, 0, 0, 0) 33%), -webkit-linear-gradient(110deg, #dd0000 66%, #ffc608 66%);
+    background: -o-linear-gradient(110deg, #000 33%, rgba(0, 0, 0, 0) 33%), -o-linear-gradient(110deg, #dd0000 66%, #ffc608 66%);
+    background: -moz-linear-gradient(110deg, #000 33%, rgba(0, 0, 0, 0) 33%), -moz-linear-gradient(110deg, #dd0000 66%, #ffc608 66%);
+    background: linear-gradient(110deg, #000 33%, rgba(0, 0, 0, 0) 33%), linear-gradient(110deg, #dd0000 66%, #ffc608 66%);
+}
+
+.bg-purple {
+    color: #fff;
+    background: -webkit-linear-gradient(110deg, #a60af3 40%, rgba(0, 0, 0, 0) 30%), -webkit-radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%);
+    background: -o-linear-gradient(110deg, #a60af3 40%, rgba(0, 0, 0, 0) 30%), -o-radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%);
+    background: -moz-linear-gradient(110deg, #a60af3 40%, rgba(0, 0, 0, 0) 30%), -moz-radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%);
+    background: linear-gradient(110deg, #a60af3 40%, rgba(0, 0, 0, 0) 30%), radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%);
+}
+
+.bg-spring {
+    background: -webkit-linear-gradient(70deg, #fff810  30%, rgba(0,0,0,0) 30%), -webkit-linear-gradient(30deg, #63e89e 60%, #ff7ee3 60%);
+    background: -o-linear-gradient(70deg, #fff810  30%, rgba(0,0,0,0) 30%), -o-linear-gradient(30deg, #63e89e 60%, #ff7ee3 60%);
+    background: -moz-linear-gradient(70deg, #fff810  30%, rgba(0,0,0,0) 30%), -moz-linear-gradient(30deg, #63e89e 60%, #ff7ee3 60%);
+    background: linear-gradient(70deg, #fff810  30%, rgba(0,0,0,0) 30%), linear-gradient(30deg, #63e89e 60%, #ff7ee3 60%);
+}
+
+/* The sidebar menu */
+.sidebar {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0;
+  left: 0;
+  background-color: #111; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+}
+
+/* The sidebar links */
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* The button used to open the sidebar */
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left .5s; /* If you want a transition effect */
+  padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+
+.topnav {
+  margin-right: 0px;
+  overflow: hidden;
+  color: rgb(28, 0, 184);
+  font-size: large;
+  letter-spacing: 4px;
+  word-spacing: 16px;
+  object-position: 50% 50%;
+
+}
+
+a:link {
+  color: rgb(214, 182, 41);
+  background-color: transparent;
+  text-decoration: none;
+}
+  
+
+a:visited {
+  color: rgb(214, 182, 41);
+  background-color: transparent;
+  text-decoration: none;
+}
+.logo-image{
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-top: -6px;
+}

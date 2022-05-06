@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% extends 'AppCoder/base.html' %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Buscar Reserva</title>
+</head>
+<body>
+    {%block contenidovariable%}
+    <h1>Consultar Reserva</h1>
+    <p>Ingrese su email para buscar su reserva:</p>
+
+
+
+
+    
+    
+    <form action="/AppCoder/busqueda_reserva/" method="get">
+    
+        <input type="text" name= "email_cliente_reserva">
+
+        <input type="submit" value="Buscar">
+
+    </form>
+
+    
+    <ul>
+        
+        {% if id_reserva == "No se ingresó el email a buscar" %}
+        <p>No se ingresó el email a buscar. Intente nuevamente.</p>
+
+        {% elif id_reserva == "No se encontraron reservas con su email" %}
+        <p>No se encontraron reservas con su email. Intente nuevamente.</p>
+
+        {% elif id_reserva%}
+            {% for reserva in id_reserva %}
+                <h1>Reserva a nombre de {{reserva.nombre_cliente_reserva}}</h1>
+                <p> El ID de reserva es: {{reserva.id_reserva}} </p>
+                <p> La fecha de entrada es: {{reserva.fecha_entrada}} </p>
+                <p> La fecha de salida es: {{reserva.fecha_salida}} </p>
+                <p> Tipo de habitación: {{reserva.tipo_habitacion_reserva}} </p>
+                <p> Cantidad de adultos: {{reserva.cantidad_adultos_reserva}} </p>
+                <p> Cantidad de menores: {{reserva.cantidad_menores_reserva}} </p>
+               
+                <a href="{% url 'borrar_reserva' reserva.id_reserva %}"> Borrar Reserva </a>
+                <br>
+                <a href="{% url 'actualizar_reserva' reserva.id_reserva %}"> Modificar Reserva </a>
+            {% endfor %}
+    
+        {% endif%}
+    </ul>
+
+    {%endblock contenidovariable%}
+</body>
+</html>

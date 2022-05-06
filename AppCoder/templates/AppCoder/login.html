@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    {% extends 'AppCoder/base.html' %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    {%block contenidovariable%}
+
+    {%if mensaje == "Se ha creado su usuario con éxito."%}
+    <p>{{mensaje}}</p>
+    {%else%}
+    <p style="color:red">{{mensaje}}</p>
+    {%endif%}
+
+    <form action="" method="POST">  
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit"> Iniciar Sesión </button>
+            
+            <p></p>
+        </form>
+        <a href="http://127.0.0.1:8000/AppCoder/accounts/signup/">
+            <button>Registrarse</button>
+         </a>
+
+    {%endblock contenidovariable%}
+</body>
+</html>

@@ -1,0 +1,28 @@
+{% extends 'AppCoder/base.html' %}
+
+{% block contenidovariable %}
+
+<div class="container text-center">
+
+    
+    {% for r in reservas %}
+        <li>{{r}}</li>
+       
+            <tr>
+            <td>{{r.id_reserva}}</td>
+            <td>{{r.nombre_cliente_reserva}}</td>
+            <td>{{r.cantidad_adultos_reserva}}</td>
+            <td>{{r.cantidad_menores_reserva}}</td>
+            <td>{{r.fecha_entrada}}</td>
+            <td>{{r.fecha_salida}}</td>
+            <td>{{r.tipo_habitacion_reserva}}</td>
+            <td>{{r.email_cliente_reserva}}</td>
+            <td>
+                <a href={% url 'borrar_reserva' r.id_reserva %} eliminar </a>
+            </td>
+            </tr>
+
+    {%endfor%}
+
+    <a href="reservas"> Agregar una nueva reserva </a>
+</div>

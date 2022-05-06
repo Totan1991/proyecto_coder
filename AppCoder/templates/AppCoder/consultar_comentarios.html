@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% extends 'AppCoder/base.html' %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comentarios</title>
+</head>
+<body>
+   
+
+    {%block contenidovariable%}
+    <br>
+    <br>
+    <form action="/AppCoder/consultar_comentarios/" method="get">
+        <label for="Tipo_Habitacion">Tipo de Habitación:</label>
+        <select id="Tipo_Habitación" name="Tipo_Habitacion">
+            <option value="">Seleccionar...</option>
+            <option value="Standard Suite">Standard Suite</option>
+            <option value="Junior Suite">Junior Suite</option>
+            <option value="Deluxe Suite">Deluxe Suite</option>
+            <option value="Presidential Suite">Presidential Suite</option>
+        </select>
+        <input type="submit" value="Buscar">
+
+    </form>
+    <h1>Tipo de Habitación: {{Tipo_Habitacion}} </h1>
+    {% for comentario in comentarios %}
+        <p> {{comentario.email_contacto}} : {{comentario.comentario}} </p>
+    {% endfor %}
+           
+
+    <br>
+    <br>
+    <a href="http://127.0.0.1:8000/AppCoder/nuevo_comentario/">
+        <button>Agregar nuevo comentario</button>
+     </a>
+     <br>
+     <br>
+    {%endblock contenidovariable%}
+</body>
+</html>
