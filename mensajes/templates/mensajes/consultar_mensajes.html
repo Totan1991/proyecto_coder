@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% extends 'AppCoder/base.html' %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comentarios</title>
+</head>
+<body>
+   
+
+    {%block contenidovariable%}
+    <br>
+    <h3>Lista de comentarios:</h3>
+
+    </form>
+    
+    {% for comentario in comentarios %}
+        <li><p> {{comentario.email}} : {{comentario.comentario}} </p> </li>
+    {% endfor %}
+           
+
+    <br>
+    <form action="/mensajes/consultar_mensajes/" method="get">
+        
+        <input type="submit" value="Refresh">
+     <br>
+     <br>
+    <a href="http://127.0.0.1:8000/mensajes/nuevo_comentario/">
+        <button>Agregar nuevo comentario</button>
+     </a>
+     
+     <br>
+    {%endblock contenidovariable%}
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% extends 'AppCoder/base.html' %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comentarios</title>
+</head>
+<body>
+    {%block contenidovariable%}
+
+        <form action= "" method="POST">
+            {%if mensaje%}   
+
+            {{mensaje}}
+
+            {% else %}
+                {% csrf_token %}
+                <br>
+                Ingrese su comentario:
+                <br>
+               
+                <table>
+                    {{ form.as_table }}
+                </table>
+                    {{mensaje}}
+                    <br>
+                    <br>
+                    <input type ="submit", value="Enviar">
+                    <br>
+                    <br>
+            {% endif %}
+        </form>
+    {%endblock contenidovariable%}
+</body>
+</html>

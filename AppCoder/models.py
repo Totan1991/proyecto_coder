@@ -5,7 +5,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import ImageField
-from pkg_resources import require
+
+
 Tipo_habitaciones = (
     ('Standard Suite', 'Standard Suite'), 
     ('Junior Suite', 'Junior Suite'), 
@@ -27,12 +28,13 @@ class reserva(models.Model):
 
     id_reserva = models.AutoField(primary_key=True)
     nombre_cliente_reserva = models.CharField(max_length=250)
-    cantidad_adultos_reserva = models.IntegerField ()
-    cantidad_menores_reserva = models.IntegerField ()
+    qde_adultos_reserva = models.IntegerField ()
+    qde_menores_reserva = models.IntegerField ()
     fecha_entrada = models.DateField()
     fecha_salida = models.DateField()
     tipo_habitacion_reserva = models.CharField(max_length=50,choices = Tipo_habitaciones)
     email_cliente_reserva = models.EmailField()
+    documento = models.ImageField(upload_to ='media/documentos/')
 
 class habitaciones(models.Model):
     numero_habitacion = models.IntegerField(primary_key=True)

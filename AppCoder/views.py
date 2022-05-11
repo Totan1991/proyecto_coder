@@ -19,12 +19,13 @@ def reservas(request):
         
         if request.method == "POST":
                 miFormulario = nueva_reserva(request.POST, request.FILES)
-               
+
                 if miFormulario.is_valid():
 
                         data = miFormulario.cleaned_data
+                        print(data)
 
-                        reservar = reserva (nombre_cliente_reserva=data['nombre_cliente_reserva'], cantidad_adultos_reserva=data['cantidad_adultos_reserva'], cantidad_menores_reserva=data['cantidad_menores_reserva'], fecha_entrada=data['fecha_entrada'], fecha_salida=data['fecha_salida'], tipo_habitacion_reserva=data['tipo_habitacion_reserva'], email_cliente_reserva=data['email_cliente_reserva'] )
+                        reservar = reserva (nombre_cliente_reserva=data['nombre_cliente_reserva'], qde_adultos_reserva=data['qde_adultos_reserva'], qde_menores_reserva=data['qde_menores_reserva'], fecha_entrada=data['fecha_entrada'], fecha_salida=data['fecha_salida'], tipo_habitacion_reserva=data['tipo_habitacion_reserva'], email_cliente_reserva=data['email_cliente_reserva'], documento=data['documento'])
                         
                         reservar.save()                 
 
@@ -38,37 +39,44 @@ def reservas(request):
 
 def inicio(request):
         if request.user.is_authenticated:
-
-                avatares = Avatar.objects.filter(user=request.user.id)
-                return render(request, "AppCoder/inicio.html",{"url":avatares[0].imagen.url})
+                try:
+                        avatares = Avatar.objects.filter(user=request.user.id)
+                        return render(request, "AppCoder/inicio.html",{"url":avatares[0].imagen.url})
+                except IndexError:
+                        avatares = 'null'
+                        return render(request, "AppCoder/inicio.html")
+                
+               # return render(request, "AppCoder/inicio.html",{"url":avatares[0].imagen.url})
 
         else:
                 return render(request, "AppCoder/inicio.html")
 
 
 def PagReserva(request):
-        return render(request, "AppCoder/busqueda_reserva.html")        
+        return render(request, "AppCoder/pages.html")        
 
 
 @login_required(login_url='http://127.0.0.1:8000/AppCoder/accounts/login/')
-def busqueda_reserva(request):
+def pages(request):
        
-        data =request.GET.get('email_cliente_reserva')
-        print(data)
-        if data:
-                id_reserva= reserva.objects.filter(email_cliente_reserva__icontains=data)
-                if id_reserva:   
-                        print(id_reserva)
-                        return render(request, "AppCoder/busqueda_reserva.html",{"email_cliente_reserva":data,"id_reserva":id_reserva})               
-                else:
-                        return render(request, "AppCoder/busqueda_reserva.html", {"id_reserva": "No se encontraron reservas con su email"})   
+        #data =request.GET.get('email_cliente_reserva')
+        #print(data)
+        #if data:
+                id_reserva= reserva.objects.all()
+                #if id_reserva:   
+                #        print(id_reserva)
+               # return render(request, "AppCoder/pages.html",{"email_cliente_reserva":data,"id_reserva":id_reserva})               
+                return render(request, "AppCoder/pages.html",{"id_reserva":id_reserva})               
+               
+                #else:
+               # return render(request, "AppCoder/pages.html", {"id_reserva": "No se encontraron reservas con su email"})   
         
-        elif data=="":    
+       # elif data=="":    
         
-                return render(request, "AppCoder/busqueda_reserva.html", {"id_reserva": "No se ingresó el email a buscar"})    
+        #        return render(request, "AppCoder/pages.html", {"id_reserva": "No se ingresó el email a buscar"})    
 
-        else:      
-                return render(request, "AppCoder/busqueda_reserva.html")
+        #else:      
+        #        return render(request, "AppCoder/pages.html")
 
 
 def login_request(request):
@@ -102,8 +110,8 @@ def suites(request,):
         return render(request,"AppCoder/suites.html")
 
 
-def pages(request):
-        return render(request, "AppCoder/pages.html")
+#def pages(request):
+  #      return render(request, "AppCoder/pages.html")
 
 
 def signup(request):  
@@ -205,13 +213,46 @@ def borrarReserva(request, id_reserva):
                 res.delete()
                 reservas = reserva.objects.all()
                 contexto = {"reservas":reservas}
-                return render(request, "AppCoder/busqueda_reserva.html")
+                return render(request, "AppCoder/consultar_reserva.html")
 
         except:
-                return render(request, "AppCoder/busqueda_reserva.html")
+                return render(request, "AppCoder/consultar_reserva.html")
 
 
 def actualizarReserva(request, id_reserva):
+
+        res = reserva.objects.get(id_reserva=id_reserva)
+        if request.method == "POST":
+                formulario = nueva_reserva(request.POST, request.FILES)
+                print(formulario.is_valid())
+                
+                if formulario.is_valid():
+                        informacion = formulario.cleaned_data
+                        print(informacion['documento'])
+                        res.id_reserva = id_reserva
+                        res.nombre_cliente_reserva = informacion['nombre_cliente_reserva']
+                        res.qde_adultos_reserva = informacion['qde_adultos_reserva']
+                        res.qde_menores_reserva = informacion['qde_menores_reserva']
+                        res.fecha_entrada = informacion['fecha_entrada']
+                        res.fecha_salida = informacion['fecha_salida']
+                        res.tipo_habitacion_reserva = informacion['tipo_habitacion_reserva']
+                        res.email_cliente_reserva = informacion['email_cliente_reserva']
+                        res.save()
+                        return render(request, "AppCoder/inicio.html")
+                else:
+                        informacion = formulario.cleaned_data
+                        print(informacion['documento'])
+                        return render(request, "AppCoder/inicio.html")             
+
+ 
+        else:
+                
+                formulario = nueva_reserva(initial = {"id_reserva":res.id_reserva,"nombre_cliente_reserva": res.nombre_cliente_reserva,"qde_adultos_reserva":res.qde_adultos_reserva,"qde_menores_reserva":res.qde_menores_reserva,"fecha_entrada":res.fecha_entrada,"fecha_salida":res.fecha_salida,"tipo_habitacion_reserva":res.tipo_habitacion_reserva,"email_cliente_reserva":res.email_cliente_reserva,"documento":res.documento})
+
+                return render(request, 'AppCoder/actualizar_reserva.html',{"formulario":formulario,"id_reserva":id_reserva})
+
+
+def verReserva(request, id_reserva):
         res = reserva.objects.get(id_reserva=id_reserva)
         if request.method == "POST":
                 formulario = nueva_reserva(request.POST)
@@ -219,8 +260,8 @@ def actualizarReserva(request, id_reserva):
                         informacion = formulario.cleaned_data
                         res.id_reserva = id_reserva
                         res.nombre_cliente_reserva = informacion["nombre_cliente_reserva"]
-                        res.cantidad_adultos_reserva = informacion["cantidad_adultos_reserva"]
-                        res.cantidad_menores_reserva = informacion["cantidad_menores_reserva"]
+                        res.qde_adultos_reserva = informacion["qde_adultos_reserva"]
+                        res.qde_menores_reserva = informacion["qde_menores_reserva"]
                         res.fecha_entrada = informacion["fecha_entrada"]
                         res.fecha_salida = informacion["fecha_salida"]
                         res.tipo_habitacion_reserva = informacion["tipo_habitacion_reserva"]
@@ -230,6 +271,37 @@ def actualizarReserva(request, id_reserva):
  
         else:
                 
-                formulario = nueva_reserva(initial = {"id_reserva":res.id_reserva,"nombre_cliente_reserva": res.nombre_cliente_reserva,"cantidad_adultos_reserva":res.cantidad_adultos_reserva,"cantidad_menores_reserva":res.cantidad_menores_reserva,"fecha_entrada":res.fecha_entrada,"fecha_salida":res.fecha_salida,"tipo_habitacion_reserva":res.tipo_habitacion_reserva,"email_cliente_reserva":res.email_cliente_reserva})
+                formulario = nueva_reserva(initial = {"id_reserva":res.id_reserva,"nombre_cliente_reserva": res.nombre_cliente_reserva,"qde_adultos_reserva":res.qde_adultos_reserva,"qde_menores_reserva":res.qde_menores_reserva,"fecha_entrada":res.fecha_entrada,"fecha_salida":res.fecha_salida,"tipo_habitacion_reserva":res.tipo_habitacion_reserva,"email_cliente_reserva":res.email_cliente_reserva,"documento":res.documento})
 
-                return render(request, 'AppCoder/actualizar_reserva.html',{"formulario":formulario,"id_reserva":id_reserva})
+                return render(request, 'AppCoder/consultar_reserva.html',{"formulario":formulario,"id_reserva":id_reserva})
+
+
+
+
+@login_required()
+def cargar_imagen(request):
+
+    if request.method == "POST":
+
+        formulario = AvatarFormulario(request.POST,request.FILES)
+
+        if formulario.is_valid():
+
+            usuario = request.user
+
+            avatar = Avatar.objects.filter(user=usuario)
+
+            if len(avatar) > 0:
+                avatar = avatar[0]
+                avatar.imagen = formulario.cleaned_data["imagen"]
+                avatar.save()
+
+            else:
+                avatar = Avatar(user=usuario, imagen=formulario.cleaned_data["imagen"])
+                avatar.save()
+            
+        return redirect("inicio")
+    else:
+
+        formulario = AvatarFormulario()
+        return render(request, "appcoder/cargar_imagen.html", {"form": formulario})

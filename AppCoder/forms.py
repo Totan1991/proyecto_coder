@@ -18,13 +18,13 @@ current_date =datetime.now()
 class nueva_reserva(forms.Form):
   
     nombre_cliente_reserva = forms.CharField(required=True,max_length=250)
-    cantidad_adultos_reserva = forms.IntegerField(required=True)
-    cantidad_menores_reserva = forms.IntegerField(required=True)
+    qde_adultos_reserva = forms.IntegerField(required=True)
+    qde_menores_reserva = forms.IntegerField(required=True)
     fecha_entrada = forms.DateField(required=True)
     fecha_salida = forms.DateField(required=True)
     tipo_habitacion_reserva = forms.CharField(max_length=50, widget=forms.Select(choices= Tipo_habitaciones))
     email_cliente_reserva = forms.EmailField(required=True)
-
+    documento = forms.ImageField()
 
 
 
@@ -78,3 +78,9 @@ class UserEditForm(UserCreationForm):
         model = User
         fields = ['first_name','last_name','email', 'password1', 'password2']
         help_text = { k: "" for k in fields}
+
+
+    
+class AvatarFormulario(forms.Form):
+
+    imagen = forms.ImageField()
