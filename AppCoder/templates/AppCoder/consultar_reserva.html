@@ -1,0 +1,26 @@
+{% extends 'AppCoder/base.html' %}
+
+{% block contenidovariable %}
+
+<div class="container text-center">
+
+    
+    {% if errors %}
+        
+        {% for error in errors %}
+            <p style="color:red">{{error}}</p>
+        {% endfor %}
+            
+    {% endif %}
+        
+
+    <form action ="/AppCoder/actualizar_reserva/{{id_reserva}}/" method= "POST">
+        {% csrf_token %}
+        <table>
+                {{formulario.as_table}}
+        </table>
+
+    </form>
+</div>
+
+{% endblock contenidovariable %}

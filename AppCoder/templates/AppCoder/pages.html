@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% extends 'AppCoder/base.html' %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Buscar Reserva</title>
+</head>
+<body>
+    {%block contenidovariable%}
+
+    <h1> Crear Reserva </h1>
+    <form action="http://127.0.0.1:8000/AppCoder/reservas/">
+        <input type="submit" value="Crear Reserva" />
+    </form>
+
+    <br>
+    
+   
+  
+    <ul>
+        
+        {% if id_reserva == "No se ingresó el email a buscar" %}
+        <p>No se ingresó el email a buscar. Intente nuevamente.</p>
+
+        {% elif id_reserva == "No se encontraron reservas con su email" %}
+        <p>No se encontraron reservas con su email. Intente nuevamente.</p>
+
+        {% elif id_reserva%}
+            {% for reserva in id_reserva %}
+                <h1>Reserva a nombre de {{reserva.nombre_cliente_reserva}}</h1>
+                <p> El ID de reserva es: {{reserva.id_reserva}} </p>
+
+               
+                <a href="{% url 'ver_reserva' reserva.id_reserva %}"> Ver Reserva </a>
+                <br>
+                <a href="{% url 'actualizar_reserva' reserva.id_reserva %}"> Modificar Reserva </a>
+                <br>
+                <a href="{% url 'borrar_reserva' reserva.id_reserva %}"> Borrar Reserva </a>
+                
+            {% endfor %}
+    
+        {% endif%}
+    </ul>
+
+    {%endblock contenidovariable%}
+</body>
+</html>
